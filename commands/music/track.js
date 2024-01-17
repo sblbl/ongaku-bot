@@ -15,6 +15,7 @@ module.exports = {
 				.setDescription('The track name')
 				.setRequired(true)),
 	async execute(interaction) {
+		await interaction.reply({ content: 'Searching for track...', ephemeral: true })
 		const trackInfo = await searchTrack(interaction.options.getString('track'), interaction.options.getString('artist'))
 		// make an embed with the track info
 		const trackEmbed = {
@@ -27,6 +28,6 @@ module.exports = {
 			},
 		}
 
-		await interaction.reply({ embeds: [trackEmbed] })
+		await interaction.editReply({ embeds: [trackEmbed], content: 'ダン' })
 	}
 }
