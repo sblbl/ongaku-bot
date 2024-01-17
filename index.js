@@ -7,6 +7,8 @@ const path = require('node:path')
 const express = require('express')
 const app = express()
 
+const { writeTrack } = require('./utils')
+
 app.use(cors())
 
 const PORT = process.env.PORT || 3000
@@ -49,7 +51,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-client.once(Events.ClientReady, readyClient => {
+client.once(Events.ClientReady, async readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`)
 })
 

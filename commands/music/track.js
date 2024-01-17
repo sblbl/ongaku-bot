@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('discord.js')
 const { searchTrack } = require('../../utils')
 
 module.exports = {
+	cooldown: 5,
 	data: new SlashCommandBuilder()
 		.setName('track')
 		.setDescription('Add a track')
