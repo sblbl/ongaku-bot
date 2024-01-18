@@ -58,8 +58,8 @@ let lastTime = -Infinity
 
 client.on(Events.ClientReady, async readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`)
-	const checkInterval = 1000 * 58 // check every 58 seconds
-	const pingInterval = 1000 * 60 * 58 // ping every 58 minutes
+	const checkInterval = 1000 * 60 // check every 58 seconds
+	const pingInterval = 1000 * 60 * 5 // ping every 58 minutes
 	setInterval(async () => {
 		if (Date.now() - lastTime < pingInterval) return
 		lastTime = Date.now()
