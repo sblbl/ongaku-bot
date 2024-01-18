@@ -22,12 +22,12 @@ module.exports = {
 			color: 0xfeda32,
 			title: trackInfo.track,
 			url: trackInfo.preview,
-			description: `Artist: ${trackInfo.artist}\nAlbum: ${trackInfo.Album}\nGenre: ${trackInfo.genre}`,
+			description: `Artist: ${trackInfo.artist}\nAlbum: ${trackInfo.album}\nGenre: ${trackInfo.genre}`,
 			thumbnail: {
 				url: trackInfo.cover,
 			},
 		}
 
-		await interaction.editReply({ embeds: [trackEmbed], content: '' })
+		await interaction.editReply({ embeds: [trackEmbed], content: '', ephemeral: false })
 	}
 }

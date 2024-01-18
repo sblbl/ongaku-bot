@@ -29,6 +29,6 @@ module.exports = {
 				url: trackInfo.cover,
 			},
 		}
-		await interaction.editReply({ embeds: [trackEmbed], content: '' })
+		await interaction.editReply({ embeds: [trackEmbed], content: '', ephemeral: false })
 	}
 }
