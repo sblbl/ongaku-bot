@@ -51,13 +51,28 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-client.once(Events.ClientReady, async readyClient => {
+const keepAlive = async () => {
+	const channel = client.channels.cache.get('1196826985767379018')
+	const messages = await channel.messages.fetch({ limit: 1 })
+	console.log(messages)
+	
+}
+
+let lastTime = -Infinity
+
+client.on(Events.ClientReady, async readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`)
+	const checkInterval = 1000 * 58 // check every 58 seconds
+	const pingInterval = 1000 * 60 * 58 // ping every 58 minutes
+	setInterval(async () => {
+		if (Date.now() - lastTime < pingInterval) return
+		lastTime = Date.now()
+		await keepAlive()
+	}, checkInterval)
 })
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return
-	//console.log(interaction)
 	const command = interaction.client.commands.get(interaction.commandName)
 
 	if (!command) {
