@@ -20,14 +20,14 @@ module.exports = {
 		// make an embed with the track info
 		const trackEmbed = {
 			color: 0xfeda32,
-			title: trackInfo.title,
-			url: trackInfo.url,
-			description: `Genre: ${trackInfo.genre}\nStyle: ${trackInfo.style}`,
+			title: trackInfo.track,
+			url: trackInfo.preview,
+			description: `Artist: ${trackInfo.artist}\nAlbum: ${trackInfo.Album}\nGenre: ${trackInfo.genre}`,
 			thumbnail: {
 				url: trackInfo.cover,
 			},
 		}
 
-		await interaction.editReply({ embeds: [trackEmbed], content: 'ダン' })
+		await interaction.editReply({ embeds: [trackEmbed], content: '' })
 	}
 }

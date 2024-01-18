@@ -15,37 +15,45 @@ module.exports = {
 				.setDescription('The track artist')
 				.setRequired(true))
 		.addStringOption(option =>
-			option.setName('genre')
-				.setDescription('The track genres, divided by commas')
-				.setRequired(true))
-		.addStringOption(option =>
-			option.setName('style')
-				.setDescription('The track styles, divided by commas')
+			option.setName('album')
+				.setDescription('The track album')
 				.setRequired(false))
 		.addStringOption(option =>
-			option.setName('link')
-				.setDescription('The track discogs or other platform link')	
+			option.setName('genre')
+				.setDescription('The track genres, divided by commas')
 				.setRequired(false))
 		.addStringOption(option =>
 			option.setName('cover')
-				.setDescription('The track discogs or other platform link')	
+				.setDescription('The track cover link')
+				.setRequired(false))
+		.addStringOption(option =>
+			option.setName('link')
+				.setDescription('The track link')	
 				.setRequired(false)),
 	async execute(interaction) {
-		//const trackData = interaction.options.getString('nts_track')
-
 		await interaction.reply({ content: 'Adding track...', ephemeral: true })
-
 		await writeRawTrack(
 			{
+				
 				track: interaction.options.getString('track'),
 				artist: interaction.options.getString('artist'),
-				genre: interaction.options.getString('genre'),
-				style: interaction.options.getString('style'),
-				link: interaction.options.getString('link'),
-				cover: interaction.options.getString('cover')
+				album: interaction.options.getString('album'),
+				genre: interaction.options.getString('album'),
+				cover: interaction.options.getString('cover'),
+				link: interaction.options.getString('link')
 			}
 		)
 
-		await interaction.editReply({ content: 'ダン' })
+		const trackEmbed = {
+			color: 0xfeda32,
+			title: trackInfo.track,
+			url: trackInfo.link,
+			description: `Artist: ${trackInfo.artist}\nAlbum: ${trackInfo.Album}\nGenre: ${trackInfo.genre}`,
+			thumbnail: {
+				url: trackInfo.cover,
+			},
+		}
+
+		await interaction.editReply({ embeds: [trackEmbed], content: '' })
 	}
 }
