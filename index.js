@@ -46,12 +46,18 @@ for (const folder of commandFolders) {
 
 client.login(process.env.DISCORD_TOKEN)
 
+app.get('/', (req, res) => {
+	res.send('Hello World!')
+})
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
 const keepAlive = async () => {
-	await pokemon()
+	//await pokemon()
+	// ping the bot to keep it alive
+	const response = await fetch('https://ongaku-bot.onrender.com')
 }
  
 let lastTime = -Infinity
