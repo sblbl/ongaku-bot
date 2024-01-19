@@ -43,9 +43,9 @@ exports.searchTrack = async (track, artist) => {
 		timeout: 20000
 	}
 	const response = await axios.request(config)
-	console.log('track', response.data)
 	
 	const result = response.data.tracks.items[0]
+	console.log('track item', result)
 	
 	const data = {}
 
